@@ -25,7 +25,7 @@
           />
         </form>
         <ul class="shortcut__links navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item px-2">
+          <li class="nav-item px-1">
             <a class="nav-link" href="#">
               <img :src="HouseIcon" alt="Home" />
             </a>
@@ -86,7 +86,7 @@ export default {
 
 <style scoped>
 .main__logo {
-  max-height: 5vh;
+  max-height: 4vh;
 }
 
 nav {
@@ -105,7 +105,8 @@ a.nav-link > img {
 div.user__image {
     width: 30px;
     clip-path: circle();
-    background: black;
+    background: lightgray;
+    transform: scale(0.98);
 }
 
 div.user__image > img {
@@ -115,6 +116,10 @@ div.user__image > img {
 
 img:hover {
  cursor: pointer;
+}
+
+img {
+  transform: scale(0.98);
 }
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="row ps-2">
+  <div>
     <ul>
       <li class="float-start">
         <div class="user__image">
@@ -32,16 +32,20 @@ export default {
 </script>
 
 <style scoped>
+
+div {
+    font-size: 0.8rem;
+}
 div.user__image {
   width: 30px;
   clip-path: circle();
-  background: black;
-  margin-top: 5px;
+  background: lightgray;
 }
 
 div.user__image > img {
   width: 30px;
   clip-path: circle();
+  transform: scale(0.99);
 }
 
 ul {

@@ -3,18 +3,28 @@
     <div class="row">
       <div class="col-8">
         <Card></Card>
+        <Card></Card>
+        <Card></Card>
       </div>
       <div class="col-2 fixed-top">
-        <ul>
-          <li>
+        <ul class="m-0 p-0">
+          <li class="mb-1 ms-2">
             <UserMenu></UserMenu>
           </li>
-          <li><hr class="dropdown-divider"></li>
-          <li>
-            <p>Vorschläge für dich</p>
+          <li class="mb-1">
+            <strong style="color: gray"> Vorschläge für dich</strong>
           </li>
           <li>
-            <UserTiles></UserTiles>
+            <ul class="m-0 p-0">
+              <li>
+                <UserTiles></UserTiles>
+              </li>
+              <li>
+                <a href="#" class="follow_button">
+                  <strong>Folgen</strong>
+                </a>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -46,5 +56,19 @@ ul {
 .fixed-top {
   top: 13vh;
   left: 60vw;
+}
+
+strong {
+  font-size: 0.7rem;
+}
+
+a.follow_button {
+  border: none;
+  background-color: white;
+  float: right;
+}
+
+a {
+    text-decoration: none;
 }
 </style>

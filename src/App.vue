@@ -12,10 +12,10 @@ export default {
 };
 </script>
 
-
 <style scoped>
 div {
   background-color: rgb(252, 252, 252);
   min-height: 100vh;
 }
+
 </style>

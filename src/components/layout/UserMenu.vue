@@ -17,7 +17,7 @@
         </ul>
       </li>
       <li class="logout__button">
-        <a class="float-end logout__button"> Wechseln </a>
+        <a class="float-end logout__button"><strong>Wechseln</strong></a>
       </li>
     </ul>
   </div>
@@ -36,13 +36,14 @@ export default {
 
 <style scoped>
 div.user__image {
-  width: 50px;
+  width: 55px;
   clip-path: circle();
-  background: black;
+  background: lightgray;
+  transform: scale(0.98);
 }
 
 div.user__image > img {
-  width: 50px;
+  width: 55px;
   clip-path: circle();
 }
 
@@ -54,5 +55,10 @@ ul {
 
 .logout__button {
   margin: 10px 0 auto 0;
+}
+
+a {
+    text-decoration: none;
+    font-size: 0.7rem;
 }
 </style>
