@@ -4,12 +4,15 @@
       <div class="col-8">
         <Card></Card>
       </div>
-      <div class="col-3">
+      <div class="col-2 fixed-top">
         <ul>
           <li>
             <UserMenu></UserMenu>
           </li>
           <li><hr class="dropdown-divider"></li>
+          <li>
+            <p>Vorschläge für dich</p>
+          </li>
           <li>
             <UserTiles></UserTiles>
           </li>
@@ -31,7 +34,7 @@ export default {
 <style scoped>
 @media only screen and (min-width: 991px) {
   div.container {
-    width: 80vw;
+    width: 60vw;
     margin: auto;
   }
 }
@@ -40,4 +43,8 @@ ul {
   list-style: none;
 }
 
+.fixed-top {
+  top: 13vh;
+  left: 60vw;
+}
 </style>

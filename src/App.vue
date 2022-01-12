@@ -13,6 +13,9 @@ export default {
 </script>
 
 
-<style lang="sass">
-
+<style scoped>
+div {
+  background-color: rgb(252, 252, 252);
+  min-height: 100vh;
+}
 </style>

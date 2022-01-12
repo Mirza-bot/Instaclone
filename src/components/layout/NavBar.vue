@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light shadow px-4">
-    <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-light border-bottom sticky-top">
+    <div class="container-fluid p-0">
       <a class="navbar-brand" href="#"
         ><img class="main__logo" :src="Logo" alt="Instaclone-Logo"
       /></a>
@@ -91,6 +91,11 @@ export default {
 
 nav {
   margin-bottom: 3rem;
+  background-color: white;
+}
+
+div.container-fluid {
+  margin: 0 20vw 0 20vw;
 }
 
 a.nav-link > img {
