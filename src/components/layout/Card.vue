@@ -1,6 +1,6 @@
 <template>
   <div class="card mb-4">
-    <div class="card-header story__header">
+    <div class="card-header story__header py-3">
       <UserTiles></UserTiles>
       <a href="#" class="dots__menu">
         <img :src="DotMenuIcon" alt="" />
@@ -8,18 +8,10 @@
     </div>
     <img :src="Logo" class="card-img-top" alt="Instastory" />
     <div class="card-body">
-      <button>
-        <img :src="HeartIcon" alt="Like-Button" />
-      </button>
-      <button>
-        <img :src="ChatIcon" alt="Like-Button" />
-      </button>
-      <button>
-        <img :src="PaperPlaneIcon" alt="Like-Button" />
-      </button>
-      <button class="float-end">
-        <img :src="BookmarkIcon" alt="Like-Button" />
-      </button>
+      <Button :iconName="'HeartIcon'" :status="'inactive'" :altValue="'Likebutton'"></Button>
+      <Button :iconName="'ChatIcon'" :status="'inactive'" :altValue="'Commentsbutton'"></Button>
+      <Button :iconName="'PaperplaneIcon'" :status="'inactive'" :altValue="'Sharebutton'"></Button>
+      <Button class="float-end" :iconName="'BookmarkIcon'" :status="'inactive'" :altValue="'Savebutton'"></Button>
       <p class="card-text mt-3">
         Some quick example text to build on the card title and make up the bulk
         of the card's content.
@@ -50,22 +42,15 @@
 import Logo from "../../assets/img/instaclone_logo.jpg";
 import DotMenuIcon from "../../assets/icons/three-dots.svg";
 import UserTiles from "./UserTiles.vue";
-import PaperPlaneIcon from "../../assets/icons/send.svg";
-import HeartIcon from "../../assets/icons/heart.svg";
-import BookmarkIcon from "../../assets/icons/bookmark.svg";
-import ChatIcon from "../../assets/icons/chat.svg";
+import Button from "../buttons/Button.vue";
 export default {
   setup() {
     return {
       Logo,
       DotMenuIcon,
-      PaperPlaneIcon,
-      HeartIcon,
-      BookmarkIcon,
-      ChatIcon,
     };
   },
-  components: { UserTiles },
+  components: { UserTiles, Button },
 };
 </script>
 
@@ -75,7 +60,7 @@ export default {
 }
 .dots__menu {
   position: absolute;
-  top: 15px;
+  top: 25px;
   right: 25px;
   transform: scale(1.2);
 }

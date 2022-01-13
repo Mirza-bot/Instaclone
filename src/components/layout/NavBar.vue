@@ -20,35 +20,28 @@
           <input
             class="form-control me-2"
             type="search"
-            placeholder="Search"
-            aria-label="Search"
+            aria-label="Suchen"
+            placeholder="     Suchen"
+            name="Search"
+            :id="placeholderSwitch"
+            v-model="searchValue"
           />
         </form>
         <ul class="shortcut__links navbar-nav mb-2 mb-lg-0">
           <li class="nav-item px-1">
-            <a class="nav-link" href="#">
-              <img :src="HouseIcon" alt="Home" />
-            </a>
+            <ButtonVue class="" :iconName="'HouseIcon'" :status="'inactive'" :altValue="'Homebutton'"></ButtonVue>
           </li>
           <li class="nav-item px-1">
-            <a class="nav-link" href="#"
-              ><img :src="PaperPlaneIcon" alt="Messages"
-            /></a>
+            <ButtonVue class="" :iconName="'PaperplaneIcon'" :status="'inactive'" :altValue="'Inboxbutton'"></ButtonVue>
           </li>
           <li class="nav-item px-1">
-            <a class="nav-link" href="#"
-              ><img :src="PlusIcon" alt="PlusIcon"
-            /></a>
+            <ButtonVue class="" :iconName="'PlusIcon'" :status="'inactive'" :altValue="'Newpostbutton'"></ButtonVue>
           </li>
           <li class="nav-item px-1">
-            <a class="nav-link" href="#"
-              ><img :src="CompassIcon" alt="Explore"
-            /></a>
+            <ButtonVue class="" :iconName="'CompassIcon'" :status="'inactive'" :altValue="'Browsebutton'"></ButtonVue>
           </li>
           <li class="nav-item px-1">
-            <a class="nav-link" href="#"
-              ><img :src="HeartIcon" alt="Activity"
-            /></a>
+            <ButtonVue class="" :iconName="'HeartIcon'" :status="'inactive'" :altValue="'Activitesbutton'"></ButtonVue>
           </li>
           <li class="nav-item ps-2">
             <div class="user__image">
@@ -63,22 +56,25 @@
 
 <script>
 import Logo from "../../assets/img/Instaclone_logo.jpg";
-import HouseIcon from "../../assets/icons/house-door-fill.svg";
-import CompassIcon from "../../assets/icons/compass.svg";
-import PaperPlaneIcon from "../../assets/icons/send.svg";
-import PlusIcon from "../../assets/icons/plus-square.svg";
-import HeartIcon from "../../assets/icons/heart.svg";
-import UserImage from "../../assets/img/Mirza.webp"
+import UserImage from "../../assets/img/Mirza.webp";
+import { computed, ref } from '@vue/reactivity';
+import ButtonVue from "../buttons/Button.vue";
 export default {
+  components: {ButtonVue},
   setup() {
+    const searchValue = ref("");
+
+    const placeholderSwitch = computed(() => {
+      if (searchValue.value !== "") return "";
+      else return "searchbar"
+
+    });
+
     return {
       Logo,
-      HouseIcon,
-      CompassIcon,
-      PaperPlaneIcon,
-      PlusIcon,
-      HeartIcon,
-      UserImage
+      UserImage,
+      searchValue,
+      placeholderSwitch
     };
   },
 };
@@ -95,7 +91,7 @@ nav {
 }
 
 div.container-fluid {
-  margin: 0 20vw 0 20vw;
+  margin: 0 15vw 0 15vw;
 }
 
 a.nav-link > img {
@@ -103,23 +99,33 @@ a.nav-link > img {
 }
 
 div.user__image {
-    width: 30px;
-    clip-path: circle();
-    background: lightgray;
-    transform: scale(0.98);
+  width: 30px;
+  clip-path: circle();
+  background: lightgray;
+  transform: scale(0.98);
 }
 
 div.user__image > img {
-    width: 30px;
-    clip-path: circle();
+  width: 30px;
+  clip-path: circle();
 }
 
 img:hover {
- cursor: pointer;
+  cursor: pointer;
 }
 
 img {
   transform: scale(0.98);
 }
 
+input.form-control:placeholder-shown {
+  background-color: rgb(246, 246, 246);
+}
+
+#searchbar {
+  background-image: url("../../assets/icons/search.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-x: 15px;
+}
 </style>

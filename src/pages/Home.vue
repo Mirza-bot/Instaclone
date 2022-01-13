@@ -13,6 +13,7 @@
           </li>
           <li class="mb-1">
             <strong style="color: gray"> Vorschläge für dich</strong>
+            <strong class="float-end mt-2">Alle anzeigen</strong>
           </li>
           <li>
             <ul class="m-0 p-0">
@@ -44,7 +45,7 @@ export default {
 <style scoped>
 @media only screen and (min-width: 991px) {
   div.container {
-    width: 60vw;
+    width: 1000px;
     margin: auto;
   }
 }
@@ -55,7 +56,8 @@ ul {
 
 .fixed-top {
   top: 13vh;
-  left: 60vw;
+  left: 62vw;
+  width: 280px;
 }
 
 strong {
