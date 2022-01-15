@@ -9,13 +9,27 @@
 import NavBar from "./components/layout/NavBar.vue";
 export default {
   components: { NavBar },
+    setup() {
+
+    const windowWidth = window.innerWidth
+
+    const mobileScreen = () => {
+      if (windowWidth < 1100) {
+        return false
+      } else return true
+    }
+
+    return {
+      mobileScreen,
+      windowWidth
+    }
+  }
 };
 </script>
 
 <style scoped>
 div {
-  background-color: rgb(252, 252, 252);
-  min-height: 100vh;
+  height: 90vh;
 }
 
 </style>

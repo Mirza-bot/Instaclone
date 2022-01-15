@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-8">
+      <div :class="mobileScreen()? 'col-xl-8' : 'col-xl-12 p-0'">
         <Card></Card>
         <Card></Card>
         <Card></Card>
       </div>
-      <div class="col-2 fixed-top">
+      <div class="col-2 fixed-top" v-if="mobileScreen()">
         <ul class="m-0 p-0">
           <li class="mb-1 ms-2">
             <UserMenu></UserMenu>
@@ -22,7 +22,7 @@
               </li>
               <li>
                 <a href="#" class="follow_button">
-                  <strong>Folgen</strong>
+                  <strong class="me-1">Folgen</strong>
                 </a>
               </li>
             </ul>
@@ -39,14 +39,48 @@ import UserMenu from "../components/layout/UserMenu.vue";
 import UserTiles from "../components/layout/UserTiles.vue";
 export default {
   components: { Card, UserMenu, UserTiles },
+  setup() {
+
+
+    const windowWidth = window.innerWidth
+
+    const mobileScreen = () => {
+      if (windowWidth < 1100) {
+        return false
+      } else return true
+    }
+
+    return {
+      mobileScreen,
+    }
+  }
 };
 </script>
 
 <style scoped>
-@media only screen and (min-width: 991px) {
+
+div.container {
+  width: 950px;
+  margin-top: 20px;
+  padding: 0;
+}
+
+div.row {
+  margin: 0;
+  padding: 0;
+}
+
+@media only screen and (max-width: 1000px) {
   div.container {
-    width: 1000px;
-    margin: auto;
+    width: 100vw;
+  }
+
+  div.container > div.row {
+    width: 100vw;
+  }
+
+  div.fixed-top {
+    display: none;
   }
 }
 
@@ -55,8 +89,8 @@ ul {
 }
 
 .fixed-top {
-  top: 13vh;
-  left: 62vw;
+  top: 110px;
+  left: calc(150px + 50vw) ;
   width: 280px;
 }
 
@@ -71,6 +105,6 @@ a.follow_button {
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 </style>

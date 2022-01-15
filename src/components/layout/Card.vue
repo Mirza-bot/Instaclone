@@ -8,9 +8,9 @@
     </div>
     <img :src="Logo" class="card-img-top" alt="Instastory" />
     <div class="card-body">
-      <Button :iconName="'HeartIcon'" :status="'inactive'" :altValue="'Likebutton'"></Button>
-      <Button :iconName="'ChatIcon'" :status="'inactive'" :altValue="'Commentsbutton'"></Button>
-      <Button :iconName="'PaperplaneIcon'" :status="'inactive'" :altValue="'Sharebutton'"></Button>
+      <Button class="m-1" :iconName="'HeartIcon'" :status="'inactive'" :altValue="'Likebutton'"></Button>
+      <Button class="m-1" :iconName="'ChatIcon'" :status="'inactive'" :altValue="'Commentsbutton'"></Button>
+      <Button class="m-1" :iconName="'PaperplaneIcon'" :status="'inactive'" :altValue="'Sharebutton'"></Button>
       <Button class="float-end" :iconName="'BookmarkIcon'" :status="'inactive'" :altValue="'Savebutton'"></Button>
       <p class="card-text mt-3">
         Some quick example text to build on the card title and make up the bulk
@@ -44,13 +44,13 @@ import DotMenuIcon from "../../assets/icons/three-dots.svg";
 import UserTiles from "./UserTiles.vue";
 import Button from "../buttons/Button.vue";
 export default {
+  components: { UserTiles, Button },
   setup() {
     return {
       Logo,
       DotMenuIcon,
     };
   },
-  components: { UserTiles, Button },
 };
 </script>
 
@@ -62,14 +62,10 @@ export default {
   position: absolute;
   top: 25px;
   right: 25px;
-  transform: scale(1.2);
 }
-
-button {
-  border: none;
-  background-color: white;
-  margin: 0 10px 0 0;
-  transform: scale(1.5);
+.dots__menu > img {
+  width: 20px;
+  height: 20px;
 }
 
 input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

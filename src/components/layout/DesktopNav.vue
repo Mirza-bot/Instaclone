@@ -1,13 +1,26 @@
 <template>
-  <nav class="sticky-top">
-    <div class="row">
-      <router-link to="/" class="col-2">
+  <nav
+    class="navbar navbar-expand navbar-light border-bottom sticky-top p-1"
+  >
+    <div class="container-fluid nav__content p-0">
+      <router-link to="/">
         <img class="main__logo" :src="Logo" alt="Instaclone-Logo" />
       </router-link>
-      <div class="nav__content col-10">
-        <form class="d-flex mx-auto float-start">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <form class="d-flex mx-auto">
           <input
-            class="form-control my-1 border-0"
+            class="form-control me-2 border-0"
             type="search"
             aria-label="Suchen"
             placeholder="        Suchen"
@@ -16,8 +29,8 @@
             v-model="searchValue"
           />
         </form>
-        <ul class="mb-2 ms">
-          <li class="px-1 ms-5">
+        <ul class="shortcut__links navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item px-1">
             <router-link to="/">
               <ButtonVue
                 class="my-1"
@@ -28,7 +41,7 @@
               </ButtonVue>
             </router-link>
           </li>
-          <li class="px-1">
+          <li class="nav-item px-1">
             <router-link to="/inbox">
               <ButtonVue
                 class="my-1"
@@ -38,7 +51,7 @@
               ></ButtonVue>
             </router-link>
           </li>
-          <li class="px-1">
+          <li class="nav-item px-1">
             <ButtonVue
               class="my-1"
               :iconName="'PlusIcon'"
@@ -46,7 +59,7 @@
               :altValue="'Newpostbutton'"
             ></ButtonVue>
           </li>
-          <li class="px-1">
+          <li class="nav-item px-1">
             <router-link to="/explore">
               <ButtonVue
                 class="my-1"
@@ -56,7 +69,7 @@
               ></ButtonVue>
             </router-link>
           </li>
-          <li class="px-1">
+          <li class="nav-item px-1">
             <ButtonVue
               class="my-1"
               :iconName="'HeartIcon'"
@@ -64,7 +77,7 @@
               :altValue="'Activitesbutton'"
             ></ButtonVue>
           </li>
-          <li class="ps-2">
+          <li class="nav-item ps-2">
             <div class="user__image">
               <img :src="UserImage" alt="Profile-Picture" />
             </div>
@@ -101,20 +114,24 @@ export default {
 </script>
 
 <style scoped>
-nav {
-  background-color: white;
-  border-bottom: 1px solid lightgray;
-  width: 100%;
-}
-
-nav > div {
-  margin: 0 auto;
-  width: 950px;
-  padding-top: 5px;
-}
 .main__logo {
   height: 45px;
   width: 110px;
+  margin-right: 100px;
+}
+
+nav {
+  background-color: white;
+  margin-bottom: 30px;
+}
+
+div.nav__content {
+  margin: 0 calc(20vw);
+}
+
+
+a.nav-link > img {
+  width: 1.5rem;
 }
 
 div.user__image {
@@ -129,13 +146,16 @@ div.user__image > img {
   clip-path: circle();
 }
 
-li {
-  display: inline-block;
+img:hover {
+  cursor: pointer;
+}
+
+img {
+  transform: scale(0.98);
 }
 
 input.form-control:placeholder-shown {
   background-color: rgb(241, 241, 241);
-  margin: 0 110px;
 }
 
 #searchbar {
