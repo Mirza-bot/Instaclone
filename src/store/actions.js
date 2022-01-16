@@ -20,8 +20,8 @@ export default {
     }
     console.log(responseData)
     context.commit('setUser', {
-        token: responseData.idToken,
         userId: responseData.localId,
+        token: responseData.idToken,
         tokenExpiration: responseData.expiresIn
     })
   },
@@ -46,8 +46,8 @@ export default {
       throw error
   }
   context.commit('setUser', {
-      token: responseData.idToken,
       userId: responseData.localId,
+      token: responseData.idToken,
       tokenExpiration: responseData.expiresIn
   })
 },
@@ -55,4 +55,4 @@ export default {
 };
 
 
-//       const userId = Math.floor(Math.random() * (10000000000000 / 23.3)) 
+//       const postId = Math.floor(Math.random() * (10000000000000 * 3.9)) 

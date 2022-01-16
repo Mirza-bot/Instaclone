@@ -1,7 +1,7 @@
 <template>
   <nav class="sticky-top">
     <div class="row">
-      <router-link to="/" class="col-3">
+      <router-link to="/home" class="col-3">
         <img class="main__logo" :src="Logo" alt="Instaclone-Logo" />
       </router-link>
       <div class="nav__content col-9 p-0">
@@ -18,7 +18,7 @@
         </form>
         <ul class="mb-2 ms">
           <li class="pe-1">
-            <router-link to="/">
+            <router-link to="/home">
               <ButtonVue
                 class="my-1"
                 :iconName="'HouseIcon'"
