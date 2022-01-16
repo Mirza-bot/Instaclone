@@ -23,25 +23,7 @@
           v-model="password"
         />
       </div>
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input
-          type="input"
-          class="form-control"
-          id="username"
-          v-model="username"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input
-          type="input"
-          class="form-control"
-          id="fullname"
-          v-model="username"
-        />
-      </div>
-      <button type="submit" class="btn btn-primary" @click.prevent="testie">
+      <button type="submit" class="btn btn-primary" @click.prevent="signUser">
         Submit
       </button>
     </form>
@@ -50,22 +32,22 @@
 
 <script>
 import { ref } from "@vue/reactivity";
+import store from "../store";
 export default {
   setup() {
     let eMail = ref("");
     let password = ref("");
-    let username = ref("");
-    let fullname = ref("");
 
-    const testie = () => {
-      console.log("hi");
+    const signUser = () => {
+      store.dispatch('login', {
+          eMail: eMail.value,
+          password: password.value
+          })
     };
     return {
       eMail,
       password,
-      username,
-      fullname,
-      testie,
+      signUser,
     };
   },
 };
