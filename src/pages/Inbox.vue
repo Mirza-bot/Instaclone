@@ -51,7 +51,7 @@ export default {
 div.chat__container {
   width: 55vw;
   height: 90vh;
-  margin: 20px auto 0 auto;
+  margin: 30px auto 0 auto;
   background-color: white;
   border: 1px solid lightgray;
   border-radius: 3px;

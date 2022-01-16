@@ -1,10 +1,11 @@
 <template>
-  <div>Explore</div>
+  <div>In Entwicklung</div>
 </template>
 
 <style scoped>
 div {
-    width: 58vw;
-    margin: auto;
+    width: 950px;
+    background-color: lightgray;
+    margin: 30px auto 0 auto;
 }
 </style>

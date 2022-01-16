@@ -8,7 +8,7 @@
       </div>
       <div class="col-2 fixed-top" v-if="mobileScreen()">
         <ul class="m-0 p-0">
-          <li class="mb-1 ms-2">
+          <li class="mb-1">
             <UserMenu></UserMenu>
           </li>
           <li class="mb-1">
@@ -61,7 +61,7 @@ export default {
 
 div.container {
   width: 950px;
-  margin-top: 20px;
+  margin-top: 30px;
   padding: 0;
 }
 

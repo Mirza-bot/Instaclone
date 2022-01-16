@@ -1,10 +1,10 @@
 <template>
   <nav class="sticky-top">
     <div class="row">
-      <router-link to="/" class="col-2">
+      <router-link to="/" class="col-3">
         <img class="main__logo" :src="Logo" alt="Instaclone-Logo" />
       </router-link>
-      <div class="nav__content col-10">
+      <div class="nav__content col-9 p-0">
         <form class="d-flex mx-auto float-start">
           <input
             class="form-control my-1 border-0"
@@ -17,7 +17,7 @@
           />
         </form>
         <ul class="mb-2 ms">
-          <li class="px-1 ms-5">
+          <li class="pe-1">
             <router-link to="/">
               <ButtonVue
                 class="my-1"
@@ -28,7 +28,7 @@
               </ButtonVue>
             </router-link>
           </li>
-          <li class="px-1">
+          <li class="pe-1">
             <router-link to="/inbox">
               <ButtonVue
                 class="my-1"
@@ -38,7 +38,7 @@
               ></ButtonVue>
             </router-link>
           </li>
-          <li class="px-1">
+          <li class="pe-1">
             <ButtonVue
               class="my-1"
               :iconName="'PlusIcon'"

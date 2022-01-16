@@ -17,7 +17,7 @@
         </ul>
       </li>
       <li class="logout__button">
-        <a class="float-end logout__button me-3"><strong>Wechseln</strong></a>
+        <a class="float-end logout__button ms-3"><strong>Wechseln</strong></a>
       </li>
     </ul>
   </div>

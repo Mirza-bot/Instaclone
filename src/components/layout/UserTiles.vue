@@ -12,7 +12,7 @@
             <p class="ps-3 mb-0"><strong>Name</strong></p>
           </li>
           <li>
-            <p class="ps-3 mb-0">HI</p>
+            <p class="ps-3 mb-0">Beliebt</p>
           </li>
         </ul>
       </li>
