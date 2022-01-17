@@ -6,7 +6,7 @@
           <img :src="Logo" alt="Profile-Picture" />
         </div>
       </li>
-      <li class="float-start">
+      <li class="float-start mt-1">
         <ul>
           <li>
             <p class="ps-3 mt-1 mb-0"><strong>Name</strong></p>

@@ -8,10 +8,30 @@
     </div>
     <img :src="Logo" class="card-img-top" alt="Instastory" />
     <div class="card-body">
-      <Button class="m-1" :iconName="'HeartIcon'" :status="'inactive'" :altValue="'Likebutton'"></Button>
-      <Button class="m-1" :iconName="'ChatIcon'" :status="'inactive'" :altValue="'Commentsbutton'"></Button>
-      <Button class="m-1" :iconName="'PaperplaneIcon'" :status="'inactive'" :altValue="'Sharebutton'"></Button>
-      <Button class="float-end" :iconName="'BookmarkIcon'" :status="'inactive'" :altValue="'Savebutton'"></Button>
+      <Button
+        class="m-1"
+        :iconName="'HeartIcon'"
+        :status="'inactive'"
+        :altValue="'Likebutton'"
+      ></Button>
+      <Button
+        class="m-1"
+        :iconName="'ChatIcon'"
+        :status="'inactive'"
+        :altValue="'Commentsbutton'"
+      ></Button>
+      <Button
+        class="m-1"
+        :iconName="'PaperplaneIcon'"
+        :status="'inactive'"
+        :altValue="'Sharebutton'"
+      ></Button>
+      <Button
+        class="float-end"
+        :iconName="'BookmarkIcon'"
+        :status="'inactive'"
+        :altValue="'Savebutton'"
+      ></Button>
       <p class="card-text mt-3">
         Some quick example text to build on the card title and make up the bulk
         of the card's content.
@@ -21,15 +41,14 @@
           type="text"
           class="form-control"
           placeholder="Kommentieren ..."
-          aria-label="Kommentieren ..."
+          aria-label="Kommentieren"
           aria-describedby="button-addon2"
-          style="border: none;"
+          style="border: none"
         />
         <button
           class="btn m-0 p-0"
           type="button"
-          id="button-addon2"
-          style="color: rgb(188, 238, 255); transform:scale(0.85)"
+          style="color: rgb(188, 238, 255); transform: scale(0.85)"
         >
           <strong>Posten</strong>
         </button>
@@ -68,16 +87,27 @@ export default {
   height: 20px;
 }
 
-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: lightgray;
   opacity: 1; /* Firefox */
 }
 
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
   color: lightgray;
 }
 
-::-ms-input-placeholder { /* Microsoft Edge */
+::-ms-input-placeholder {
+  /* Microsoft Edge */
   color: lightgray;
+}
+
+/* zum entfernen der BS-Umrandung beim darauf klicken */
+input:focus, button:focus {
+  -webkit-appearance: none;
+  border-color: #ffffff;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 </style>

@@ -24,28 +24,39 @@
             v-model="password"
           />
         </div>
+        <div class="mb-3">
+          <input
+            type="input"
+            class="form-control"
+            placeholder="Nutzername"
+            v-model="username"
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="input"
+            class="form-control"
+            placeholder="Vorname"
+            v-model="firstname"
+          />
+        </div>
+        <div class="mb-3">
+          <input
+            type="input"
+            class="form-control"
+            placeholder="Nachname"
+            v-model="lastname"
+          />
+        </div>
         <button
           type="submit"
           class="btn btn-primary mt-1 mb-3"
-          @click.prevent="login"
+          @click.prevent="signup"
         >
-          Anmelden
+          Registrieren
         </button>
       </form>
-      <span class="mt-3">
-        Du hast kein Konto? <a href="#">Registrieren</a>
-      </span>
-      <hr class="dropdown-divider mt-3" />
-      <div>
-        <span> Oder probiere es erst mal mit dem: </span>
-        <button
-          type="submit"
-          class="btn btn-primary mt-3"
-          @click.prevent="demo"
-        >
-          Demo-Account
-        </button>
-      </div>
+      <span class="mt-3"> Du hast ein Konto? <a href="#">Anmelden</a> </span>
     </div>
   </div>
 </template>
@@ -59,37 +70,37 @@ export default {
   setup() {
     let eMail = ref("");
     let password = ref("");
+    let username = ref("");
+    let firstname = ref("");
+    let lastname = ref("");
 
     const status = computed(() => {
       return store.getters.authenticated;
     });
 
-    const login = async() => {
-       await store.dispatch("login", {
+    const signup = async () => {
+      await store.dispatch("signup", {
         eMail: eMail.value,
         password: password.value,
+      });
+      await store.dispatch("sendUserData", {
+        username: username.value,
+        firstname: firstname.value,
+        lastname: lastname.value,
       });
       if (status.value !== null) {
         router.push("/home");
       }
     };
-    const demo = async() => {
-      await store.dispatch("login", {
-        eMail: "test@test.com",
-        password: "",
-      });
-      router.push("/home");
-      if (status.value !== null) {
-        router.push("/home");
-      } else return
-    };
     return {
       Logo,
       eMail,
+      username,
       password,
-      login,
-      demo,
-      status
+      signup,
+      status,
+      firstname,
+      lastname,
     };
   },
 };
@@ -98,7 +109,7 @@ export default {
 <style scoped>
 div.login__container {
   max-width: 350px;
-  height: 450px;
+  height: 500px;
   margin: 150px auto 0 auto;
   background-color: white;
   padding: 30px;

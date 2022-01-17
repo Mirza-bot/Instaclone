@@ -56,17 +56,35 @@
               ></ButtonVue>
             </router-link>
           </li>
-          <li class="px-1">
+          <li>
             <ButtonVue
-              class="my-1"
+              class="mt-2"
               :iconName="'HeartIcon'"
               :status="'inactive'"
               :altValue="'Activitesbutton'"
             ></ButtonVue>
           </li>
-          <li class="ps-2">
-            <div class="user__image">
-              <img :src="UserImage" alt="Profile-Picture" />
+          <li>
+            <div class="btn-group border-0">
+              <button
+                class="bg-white btn-sm border-0"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <div class="user__image">
+                  <img :src="UserImage" alt="Profile-Picture" />
+                </div>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end profile__menu">
+                <router-link to="/profile">
+                  <li class="dropdown-item">Profil</li>
+                </router-link>
+                <li class="dropdown-item">Gespeichert</li>
+                <li class="dropdown-item">Einstellungen</li>
+                <li class="dropdown-item">Konto wechseln</li>
+                <li class="dropdown-item">Abmelden</li>
+              </ul>
             </div>
           </li>
         </ul>
@@ -143,5 +161,10 @@ input.form-control:placeholder-shown {
   background-repeat: no-repeat;
   background-position: center;
   background-position-x: 15px;
+}
+
+.profile__menu {
+  font-size: 0.8rem;
+  z-index: 2;
 }
 </style>

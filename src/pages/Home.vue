@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div :class="mobileScreen()? 'col-xl-8' : 'col-xl-12 p-0'">
+      <div :class="mobileScreen()? 'col-lg-8' : 'col-lg-12 p-0'">
         <Card></Card>
         <Card></Card>
         <Card></Card>
@@ -72,11 +72,11 @@ div.row {
 
 @media only screen and (max-width: 1000px) {
   div.container {
-    width: 100vw;
+    width: 100%;
   }
 
   div.container > div.row {
-    width: 100vw;
+    width: 100%;
   }
 
   div.fixed-top {
@@ -90,8 +90,9 @@ ul {
 
 .fixed-top {
   top: 110px;
-  left: calc(150px + 50vw) ;
+  left: calc(160px + 50vw) ;
   width: 280px;
+  z-index: 1;
 }
 
 strong {

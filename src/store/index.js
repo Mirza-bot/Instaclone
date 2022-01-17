@@ -7,9 +7,12 @@ import getters from './getters'
 const store = createStore({
     state() {
         return{
+            username: null,
             userId: null,
             token: null,
-            tokenExpiration: null
+            tokenExpiration: null,
+            firstname: null,
+            lastname: null
         }
     },
     actions,
