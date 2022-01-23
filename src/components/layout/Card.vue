@@ -1,12 +1,12 @@
 <template>
   <div class="card mb-4">
     <div class="card-header story__header py-3">
-      <UserTiles></UserTiles>
+      <UserTiles :username="username"></UserTiles>
       <a href="#" class="dots__menu">
         <img :src="DotMenuIcon" alt="" />
       </a>
     </div>
-    <img :src="Logo" class="card-img-top" alt="Instastory" />
+    <img :src="image" class="card-img-top" alt="Instastory" />
     <div class="card-body">
       <Button
         class="m-1"
@@ -33,8 +33,7 @@
         :altValue="'Savebutton'"
       ></Button>
       <p class="card-text mt-3">
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
+        {{ postTitle }}
       </p>
       <div class="input-group border-top">
         <input
@@ -64,6 +63,7 @@ import UserTiles from "./UserTiles.vue";
 import Button from "../buttons/Button.vue";
 export default {
   components: { UserTiles, Button },
+  props: ["username", "image", "postTitle"],
   setup() {
     return {
       Logo,

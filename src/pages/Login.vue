@@ -33,7 +33,7 @@
         </button>
       </form>
       <span class="mt-3">
-        Du hast kein Konto? <a href="#">Registrieren</a>
+        Du hast kein Konto? <router-link to="/register"> Registrieren </router-link>
       </span>
       <hr class="dropdown-divider mt-3" />
       <div>

@@ -9,9 +9,9 @@
       <li class="float-start">
         <ul>
           <li>
-            <p class="ps-3 mb-0"><strong>Name</strong></p>
+            <p class="ps-3 mb-0"><strong> {{ username }} </strong></p>
           </li>
-          <li>
+          <li v-show="showPopular">
             <p class="ps-3 mb-0">Beliebt</p>
           </li>
         </ul>
@@ -23,6 +23,7 @@
 <script>
 import Logo from "../../assets/img/Mirza.webp";
 export default {
+  props: ["username", "showPopular"],
   setup() {
     return {
       Logo,

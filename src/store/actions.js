@@ -1,3 +1,5 @@
+import { app, db, collection, getDocs, addDoc  } from "../firebase";
+
 export default {
   async signup(context, payload) {
     const response = await fetch(
@@ -50,25 +52,18 @@ export default {
 },
 
 
-async sendUserData(context, payload) {
-  const token = context.getters.getToken;
-  const response = await fetch(
-    `https://instaclone-application-default-rtdb.europe-west1.firebasedatabase.app/users/${payload.username}.json?auth=` + token,
-    {
-      method: "POST",
-      body: JSON.stringify({
-        username: payload.username,
-        firstname: payload.firstname,
-        lastname: payload.lastname
-      }),
-    }
-  );
-  const responseData = await response.json();
-
-  if (!response.ok) {
-      const error = new Error(responseData.message || 'Failed to send Data!')
-      throw error
+async sendUserData(context, payload) {  
+  try {
+    const addUser = await addDoc(collection(db, "users"), {
+      username: payload.username,
+      firstname: payload.firstname,
+      lastname: payload.lastname
+    });
+    console.log(`User ${payload.username} set with User-ID:`, addUser.id)
+  } catch (e) {
+    console.error("Error sending Userdata:", e)
   }
+
   context.commit('setUserData', {
     username: payload.username,
     firstname: payload.firstname,

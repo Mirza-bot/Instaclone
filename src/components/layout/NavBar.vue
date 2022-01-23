@@ -44,6 +44,9 @@
               :iconName="'PlusIcon'"
               :status="'inactive'"
               :altValue="'Newpostbutton'"
+              type="button"
+              data-bs-toggle="modal"
+              data-bs-target="#newPost"
             ></ButtonVue>
           </li>
           <li class="px-1">

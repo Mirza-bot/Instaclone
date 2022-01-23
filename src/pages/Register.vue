@@ -56,7 +56,7 @@
           Registrieren
         </button>
       </form>
-      <span class="mt-3"> Du hast ein Konto? <a href="#">Anmelden</a> </span>
+      Du hast ein Konto? <router-link to="/login"> Anmelden </router-link>
     </div>
   </div>
 </template>

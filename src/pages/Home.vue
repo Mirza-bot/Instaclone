@@ -2,9 +2,7 @@
   <div class="container">
     <div class="row">
       <div :class="mobileScreen()? 'col-lg-8' : 'col-lg-12 p-0'">
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
+        <Card v-for="post in allPosts" :key="post.id" :username="post.data.username" :postTitle="post.data.caption" :image="post.data.image"></Card>
       </div>
       <div class="col-2 fixed-top" v-if="mobileScreen()">
         <ul class="m-0 p-0">
@@ -18,7 +16,7 @@
           <li>
             <ul class="m-0 p-0">
               <li>
-                <UserTiles></UserTiles>
+                <UserTiles :showPopular="true"></UserTiles>
               </li>
               <li>
                 <a href="#" class="follow_button">
@@ -34,12 +32,18 @@
 </template>
 
 <script>
+import { computed } from '@vue/reactivity';
 import Card from "../components/layout/Card.vue";
 import UserMenu from "../components/layout/UserMenu.vue";
 import UserTiles from "../components/layout/UserTiles.vue";
+import store from "../store";
 export default {
   components: { Card, UserMenu, UserTiles },
   setup() {
+
+    const allPosts = computed(() => {
+      return store.getters.getDataBase
+    })
 
 
     const windowWidth = window.innerWidth
@@ -52,6 +56,7 @@ export default {
 
     return {
       mobileScreen,
+      allPosts
     }
   }
 };
