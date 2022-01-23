@@ -9,10 +9,10 @@
       <li class="float-start mt-1">
         <ul>
           <li>
-            <p class="ps-3 mt-1 mb-0"><strong>Name</strong></p>
+            <p class="ps-3 mt-1 mb-0"><strong>{{username}}</strong></p>
           </li>
           <li>
-            <p class="ps-3 mt-1 mb-0">HI</p>
+            <p class="ps-3 mt-1 mb-0">{{realname}}</p>
           </li>
         </ul>
       </li>
@@ -26,6 +26,7 @@
 <script>
 import Logo from "../../assets/img/Mirza.webp";
 export default {
+  props: ["username", "realname"],
   setup() {
     return {
       Logo,

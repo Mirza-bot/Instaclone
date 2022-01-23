@@ -7,7 +7,7 @@
       <div class="col-2 fixed-top" v-if="mobileScreen()">
         <ul class="m-0 p-0">
           <li class="mb-1">
-            <UserMenu></UserMenu>
+            <UserMenu :username="username" :realname="fullname"></UserMenu>
           </li>
           <li class="mb-1">
             <strong style="color: gray"> Vorschläge für dich</strong>
@@ -45,6 +45,14 @@ export default {
       return store.getters.getDataBase
     })
 
+    const username = computed(() => {
+      return store.getters.getUsername
+    })
+
+    const fullname = computed(() => {
+      return store.getters.getFullname
+    })
+
 
     const windowWidth = window.innerWidth
 
@@ -56,7 +64,9 @@ export default {
 
     return {
       mobileScreen,
-      allPosts
+      allPosts,
+      fullname,
+      username
     }
   }
 };

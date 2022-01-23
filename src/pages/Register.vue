@@ -82,8 +82,6 @@ export default {
       await store.dispatch("signup", {
         eMail: eMail.value,
         password: password.value,
-      });
-      await store.dispatch("sendUserData", {
         username: username.value,
         firstname: firstname.value,
         lastname: lastname.value,
