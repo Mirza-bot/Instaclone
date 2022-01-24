@@ -17,23 +17,35 @@
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            @click="uploadedImage = null"
           ></button>
         </div>
         <div class="modal-body">
-          <img :src="ImageIcon" alt="ImageIcon" />
+          <img :src="shownImage" alt="Image" />
           <input
-            id="imageUpload"
+            id="image_input"
             type="file"
-            accept="image/png, image/jpg"
+            accept="image/*"
             style="display: none"
+            @change="readFile($event)"
           />
-          <button
+          <button v-if="!uploadedImage"
             type="button"
             class="btn btn-primary upload_button"
             @click="openFile"
           >
             Bild hochladen
           </button>
+          <div v-else>
+            <input type="text" id="post_description" placeholder="Beschreibungstext hinzufügen...">
+            <button
+            type="button"
+            class="btn btn-primary submit_button"
+            @click="openFile"
+          >
+            Posten
+          </button>
+          </div>
         </div>
       </div>
     </div>
@@ -41,17 +53,38 @@
 </template>
 
 <script>
+import { computed, ref } from "@vue/reactivity";
 import ImageIcon from "../../assets/icons/images.svg";
 export default {
   setup() {
+    const uploadedImage = ref(null);
+
+    const shownImage = computed(() => {
+      if (uploadedImage.value === null) return ImageIcon;
+      else return uploadedImage.value;
+    });
+    const readFile = (event) => {
+      const file = event.target.files[0];
+      if (file && file.type.substr(0, 5) === "image") {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = (event) => {
+          uploadedImage.value = event.target.result;
+        };
+      } else {
+        uploadedImage.value = null;
+      }
+    };
 
     const openFile = () => {
-      document.getElementById('imageUpload').click()
-    }
+      document.querySelector("#image_input").click();
+    };
 
     return {
-      ImageIcon,
-      openFile
+      openFile,
+      shownImage,
+      readFile,
+      uploadedImage
     };
   },
 };
@@ -61,7 +94,7 @@ export default {
 img {
   display: block;
   min-width: 100px;
-  max-width: 490px;
+  max-width: 450px;
   margin: 40px auto;
 }
 
@@ -69,4 +102,21 @@ img {
   display: block;
   margin: 40px auto;
 }
+
+#post_description {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid lightgray;
+}
+
+#post_description:focus {
+  outline: none;
+  border-bottom: 2px solid rgba(185, 228, 255, 0.815);
+}
+
+.submit_button {
+  display: block;
+  margin: 10px auto;
+}
+
 </style>

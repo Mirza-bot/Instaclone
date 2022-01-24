@@ -76,7 +76,7 @@
                 aria-expanded="false"
               >
                 <div class="user__image">
-                  <img :src="UserImage" alt="Profile-Picture" />
+                  <img :src="placeholderImg" alt="Profile-Picture" />
                 </div>
               </button>
               <ul class="dropdown-menu dropdown-menu-end profile__menu">
@@ -86,7 +86,7 @@
                 <li class="dropdown-item">Gespeichert</li>
                 <li class="dropdown-item">Einstellungen</li>
                 <li class="dropdown-item">Konto wechseln</li>
-                <li class="dropdown-item">Abmelden</li>
+                <li class="dropdown-item" @click="logout">Abmelden</li>
               </ul>
             </div>
           </li>
@@ -98,9 +98,11 @@
 
 <script>
 import Logo from "../../assets/img/Instaclone_logo.jpg";
-import UserImage from "../../assets/img/Mirza.webp";
+import placeholderImg from "../../assets/img/placeholder_user.webp";
 import { computed, ref } from "@vue/reactivity";
 import ButtonVue from "../buttons/Button.vue";
+import store from "../../store";
+import router from "../../routes";
 export default {
   components: { ButtonVue },
   setup() {
@@ -111,11 +113,17 @@ export default {
       else return "searchbar";
     });
 
+    const logout = () => {
+      store.dispatch("logout")
+      router.replace("/login")
+    } 
+
     return {
       Logo,
-      UserImage,
+      placeholderImg,
       searchValue,
       placeholderSwitch,
+      logout
     };
   },
 };
@@ -169,5 +177,9 @@ input.form-control:placeholder-shown {
 .profile__menu {
   font-size: 0.8rem;
   z-index: 2;
+}
+
+.dropdown-item:hover {
+  cursor: pointer;
 }
 </style>

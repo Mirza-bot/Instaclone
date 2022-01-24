@@ -3,7 +3,7 @@
     <ul>
       <li class="float-start">
         <div class="user__image">
-          <img :src="Logo" alt="Profile-Picture" />
+          <img :src="placeholderImg" alt="Profile-Picture" />
         </div>
       </li>
       <li class="float-start">
@@ -21,12 +21,12 @@
 </template>
 
 <script>
-import Logo from "../../assets/img/Mirza.webp";
+import placeholderImg from "../../assets/img/placeholder_user.webp";
 export default {
   props: ["username", "showPopular"],
   setup() {
     return {
-      Logo,
+      placeholderImg,
     };
   },
 };

@@ -1,4 +1,4 @@
-import { app, db, collection, getDocs, addDoc, setDoc, doc } from "../firebase";
+import { app, db, collection, getDocs, getDoc, addDoc, setDoc, doc } from "../firebase";
 
 export default {
   async signup(context, payload) {
@@ -20,12 +20,16 @@ export default {
       throw error;
     }
 
-    context.dispatch("sendUserData", {
+    await context.dispatch("sendUserData", {
       userId: responseData.localId,
       username: payload.username,
       firstname: payload.firstname,
       lastname: payload.lastname,
     });
+
+    await context.dispatch("getUserData", {
+      userId: responseData.localId
+    })
 
     context.commit("setUser", {
       userId: responseData.localId,
@@ -52,6 +56,9 @@ export default {
       const error = new Error(responseData.message || "Failed to sign up!");
       throw error;
     }
+    await context.dispatch("getUserData", {
+      userId: responseData.localId
+    })
     context.commit("setUser", {
       userId: responseData.localId,
       token: responseData.idToken,
@@ -59,9 +66,22 @@ export default {
     });
   },
 
+  logout(context, payload) {
+    context.commit("setUser", {
+      token: null,
+      userId: null,
+      tokenExpiration: null
+    })
+    context.commit("setUserData", {
+      username: null,
+        firstname: null,
+        lastname: null,
+    })
+  },
+
   async sendUserData(context, payload) {
     try {
-      await setDoc(doc(db, "users" , `${payload.username}`), {
+      await setDoc(doc(db, "users" , payload.userId), {
         userId: payload.userId,
         username: payload.username,
         firstname: payload.firstname,
@@ -77,4 +97,22 @@ export default {
       console.error("Error sending userdata:", e);
     }
   },
+
+  async getUserData(context, payload) {
+    const docRef = doc(db, "users", payload.userId)
+    const docSnap = await getDoc(docRef)
+    if (docSnap.exists()) {
+      context.commit("setUserData", {
+        username: docSnap.data().username,
+        firstname: docSnap.data().firstname,
+        lastname: docSnap.data().lastname,
+      });
+    } else {
+      console.log("No data found!")
+    }
+  },
+
+  async sendPost(context, payload) {
+
+  }
 };

@@ -3,7 +3,7 @@
     <ul>
       <li class="float-start">
         <div class="user__image">
-          <img :src="Logo" alt="Profile-Picture" />
+          <img :src="placeholderImg" alt="Profile-Picture" />
         </div>
       </li>
       <li class="float-start mt-1">
@@ -12,7 +12,7 @@
             <p class="ps-3 mt-1 mb-0"><strong>{{username}}</strong></p>
           </li>
           <li>
-            <p class="ps-3 mt-1 mb-0">{{realname}}</p>
+            <p class="ps-3 mt-1 mb-0 real_name">{{realname}}</p>
           </li>
         </ul>
       </li>
@@ -24,12 +24,12 @@
 </template>
 
 <script>
-import Logo from "../../assets/img/Mirza.webp";
+import placeholderImg from "../../assets/img/placeholder_user.webp";
 export default {
   props: ["username", "realname"],
   setup() {
     return {
-      Logo,
+      placeholderImg,
     };
   },
 };
@@ -44,7 +44,7 @@ div.user__image {
 }
 
 div.user__image > img {
-  width: 55px;
+  width: 56px;
   clip-path: circle();
 }
 
@@ -61,5 +61,9 @@ ul {
 a {
     text-decoration: none;
     font-size: 0.7rem;
+}
+
+.real_name {
+  font-size: 0.8rem;
 }
 </style>
