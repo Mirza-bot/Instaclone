@@ -1,4 +1,14 @@
-import { app, db, collection, getDocs, getDoc, addDoc, setDoc, doc } from "../firebase";
+import {
+  app,
+  db,
+  collection,
+  getDocs,
+  getDoc,
+  addDoc,
+  setDoc,
+  doc,
+  Timestamp,
+} from "../firebase";
 
 export default {
   async signup(context, payload) {
@@ -28,8 +38,8 @@ export default {
     });
 
     await context.dispatch("getUserData", {
-      userId: responseData.localId
-    })
+      userId: responseData.localId,
+    });
 
     context.commit("setUser", {
       userId: responseData.localId,
@@ -57,8 +67,8 @@ export default {
       throw error;
     }
     await context.dispatch("getUserData", {
-      userId: responseData.localId
-    })
+      userId: responseData.localId,
+    });
     context.commit("setUser", {
       userId: responseData.localId,
       token: responseData.idToken,
@@ -70,18 +80,18 @@ export default {
     context.commit("setUser", {
       token: null,
       userId: null,
-      tokenExpiration: null
-    })
+      tokenExpiration: null,
+    });
     context.commit("setUserData", {
       username: null,
-        firstname: null,
-        lastname: null,
-    })
+      firstname: null,
+      lastname: null,
+    });
   },
 
   async sendUserData(context, payload) {
     try {
-      await setDoc(doc(db, "users" , payload.userId), {
+      await setDoc(doc(db, "users", payload.userId), {
         userId: payload.userId,
         username: payload.username,
         firstname: payload.firstname,
@@ -99,8 +109,8 @@ export default {
   },
 
   async getUserData(context, payload) {
-    const docRef = doc(db, "users", payload.userId)
-    const docSnap = await getDoc(docRef)
+    const docRef = doc(db, "users", payload.userId);
+    const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       context.commit("setUserData", {
         username: docSnap.data().username,
@@ -108,11 +118,24 @@ export default {
         lastname: docSnap.data().lastname,
       });
     } else {
-      console.log("No data found!")
+      console.log("No data found!");
     }
   },
 
   async sendPost(context, payload) {
-
-  }
+    const postId = context.getters.generateUniqueId;
+    console.log(postId)
+    if (context.getters.authenticated) {
+      await setDoc(doc(db, "posts", postId), {
+        userId: context.getters.authenticated,
+        username: context.getters.getUsername,
+        postTime: Timestamp.fromDate(new Date()),
+        postImage: payload.image,
+        postDescription: payload.postDescription
+      });
+      await setDoc(doc(db, context.getters.getUsername), {
+        userPosts: postId,
+      });
+    }
+  },
 };

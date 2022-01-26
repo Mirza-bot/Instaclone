@@ -22,6 +22,7 @@
         </div>
         <div class="modal-body">
           <img :src="shownImage" alt="Image" />
+          <canvas></canvas>
           <input
             id="image_input"
             type="file"
@@ -29,7 +30,8 @@
             style="display: none"
             @change="readFile($event)"
           />
-          <button v-if="!uploadedImage"
+          <button
+            v-if="!uploadedImage"
             type="button"
             class="btn btn-primary upload_button"
             @click="openFile"
@@ -37,14 +39,19 @@
             Bild hochladen
           </button>
           <div v-else>
-            <input type="text" id="post_description" placeholder="Beschreibungstext hinzufügen...">
+            <input
+              type="text"
+              id="post_description"
+              placeholder="Beschreibungstext hinzufügen..."
+              v-bind="postDescription"
+            />
             <button
-            type="button"
-            class="btn btn-primary submit_button"
-            @click="openFile"
-          >
-            Posten
-          </button>
+              type="button"
+              class="btn btn-primary submit_button"
+              @click="post"
+            >
+              Posten
+            </button>
           </div>
         </div>
       </div>
@@ -55,9 +62,11 @@
 <script>
 import { computed, ref } from "@vue/reactivity";
 import ImageIcon from "../../assets/icons/images.svg";
+import store from "../../store";
 export default {
   setup() {
     const uploadedImage = ref(null);
+    const postDescription = ref("");
 
     const shownImage = computed(() => {
       if (uploadedImage.value === null) return ImageIcon;
@@ -76,6 +85,15 @@ export default {
       }
     };
 
+    const post = () => {
+      if (uploadedImage.value) {
+        store.dispatch("sendPost", {
+          image: uploadedImage.value,
+          postDescription: postDescription.value
+        })
+      }
+    }
+
     const openFile = () => {
       document.querySelector("#image_input").click();
     };
@@ -84,7 +102,9 @@ export default {
       openFile,
       shownImage,
       readFile,
-      uploadedImage
+      uploadedImage,
+      postDescription,
+      post
     };
   },
 };
@@ -118,5 +138,4 @@ img {
   display: block;
   margin: 10px auto;
 }
-
 </style>
