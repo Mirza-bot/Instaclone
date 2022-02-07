@@ -22,7 +22,6 @@
         </div>
         <div class="modal-body">
           <img :src="shownImage" alt="Image" />
-          <canvas></canvas>
           <input
             id="image_input"
             type="file"
@@ -43,7 +42,7 @@
               type="text"
               id="post_description"
               placeholder="Beschreibungstext hinzufügen..."
-              v-bind="postDescription"
+              v-model="postDescription"
             />
             <button
               type="button"
@@ -72,13 +71,15 @@ export default {
       if (uploadedImage.value === null) return ImageIcon;
       else return uploadedImage.value;
     });
-    const readFile = (event) => {
+
+    const readFile = async (event) => {
       const file = event.target.files[0];
+      console.log(file);
       if (file && file.type.substr(0, 5) === "image") {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = (event) => {
-          uploadedImage.value = event.target.result;
+          uploadedImage.value = event.currentTarget.result;
         };
       } else {
         uploadedImage.value = null;
@@ -89,10 +90,10 @@ export default {
       if (uploadedImage.value) {
         store.dispatch("sendPost", {
           image: uploadedImage.value,
-          postDescription: postDescription.value
-        })
+          postDescription: postDescription.value,
+        });
       }
-    }
+    };
 
     const openFile = () => {
       document.querySelector("#image_input").click();
@@ -104,7 +105,7 @@ export default {
       readFile,
       uploadedImage,
       postDescription,
-      post
+      post,
     };
   },
 };
@@ -113,8 +114,8 @@ export default {
 <style scoped>
 img {
   display: block;
-  min-width: 100px;
-  max-width: 450px;
+  width: 100px;
+  height: 100px;
   margin: 40px auto;
 }
 

@@ -12,7 +12,7 @@ const store = createStore({
       tokenExpiration: null,
       firstname: null,
       lastname: null,
-      allPosts: null,
+      allPosts: [],
     };
   },
   actions,

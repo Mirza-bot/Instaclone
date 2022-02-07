@@ -79,7 +79,7 @@ export default {
 }
 .dots__menu {
   position: absolute;
-  top: 25px;
+  top: 20px;
   right: 25px;
 }
 .dots__menu > img {
@@ -104,7 +104,8 @@ input::placeholder {
 }
 
 /* zum entfernen der BS-Umrandung beim darauf klicken */
-input:focus, button:focus {
+input:focus,
+button:focus {
   -webkit-appearance: none;
   border-color: #ffffff;
   -webkit-box-shadow: none;

@@ -8,6 +8,7 @@ import {
   setDoc,
   doc,
   Timestamp,
+  query,
 } from "../firebase";
 
 export default {
@@ -124,18 +125,27 @@ export default {
 
   async sendPost(context, payload) {
     const postId = context.getters.generateUniqueId;
-    console.log(postId)
+    console.log(payload.postDescription);
     if (context.getters.authenticated) {
       await setDoc(doc(db, "posts", postId), {
         userId: context.getters.authenticated,
         username: context.getters.getUsername,
         postTime: Timestamp.fromDate(new Date()),
         postImage: payload.image,
-        postDescription: payload.postDescription
+        postDescription: payload.postDescription,
       });
-      await setDoc(doc(db, context.getters.getUsername), {
+      await setDoc(doc(db, "users", context.getters.getUsername), {
         userPosts: postId,
       });
     }
+    context.dispatch("getAllPosts");
+  },
+
+  async getAllPosts(context, payload) {
+    const q = query(collection(db, "posts"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      context.commit("setAllPosts", doc.data());
+    });
   },
 };

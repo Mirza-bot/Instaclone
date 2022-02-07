@@ -1,8 +1,14 @@
 <template>
   <div class="container">
     <div class="row">
-      <div :class="mobileScreen()? 'col-lg-8' : 'col-lg-12 p-0'">
-        <Card v-for="post in allPosts" :key="post.id" :username="post.data.username" :postTitle="post.data.caption" :image="post.data.image"></Card>
+      <div :class="mobileScreen() ? 'col-lg-8' : 'col-lg-12 p-0'">
+        <Card
+          v-for="post in allPosts"
+          :key="post.id"
+          :username="post.username"
+          :postTitle="post.postDescription"
+          :image="post.postImage"
+        ></Card>
       </div>
       <div class="col-2 fixed-top" v-if="mobileScreen()">
         <ul class="m-0 p-0">
@@ -32,7 +38,7 @@
 </template>
 
 <script>
-import { computed } from '@vue/reactivity';
+import { computed } from "@vue/reactivity";
 import Card from "../components/layout/Card.vue";
 import UserMenu from "../components/layout/UserMenu.vue";
 import UserTiles from "../components/layout/UserTiles.vue";
@@ -40,40 +46,37 @@ import store from "../store";
 export default {
   components: { Card, UserMenu, UserTiles },
   setup() {
-
     const allPosts = computed(() => {
-      return store.getters.getDataBase
-    })
+      return store.getters.getDataBase;
+    });
 
     const username = computed(() => {
-      return store.getters.getUsername
-    })
+      return store.getters.getUsername;
+    });
 
     const fullname = computed(() => {
-      return store.getters.getFullname
-    })
+      return store.getters.getFullname;
+    });
 
-
-    const windowWidth = window.innerWidth
+    const windowWidth = window.innerWidth;
 
     const mobileScreen = () => {
       if (windowWidth < 1100) {
-        return false
-      } else return true
-    }
+        return false;
+      } else return true;
+    };
 
     return {
       mobileScreen,
       allPosts,
       fullname,
-      username
-    }
-  }
+      username,
+    };
+  },
 };
 </script>
 
 <style scoped>
-
 div.container {
   width: 950px;
   margin-top: 30px;
@@ -105,7 +108,7 @@ ul {
 
 .fixed-top {
   top: 110px;
-  left: calc(160px + 50vw) ;
+  left: calc(160px + 50vw);
   width: 280px;
   z-index: 1;
 }

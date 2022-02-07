@@ -3,7 +3,7 @@
     <ul>
       <li class="float-start">
         <div class="user__image">
-          <img :src="Logo" alt="Profile Picture" />
+          <img :src="profileImg" alt="Profile Picture" />
         </div>
       </li>
       <li class="float-start">
@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import Logo from "../../assets/img/Mirza.webp";
+import profileImg from "../../assets/img/placeholder_user.webp";
 export default {
   setup() {
     return {
-      Logo,
+      profileImg,
     };
   },
 };
@@ -47,7 +47,7 @@ div.user__image > img {
 }
 
 div.user__name {
-    margin: 22px 0;
+  margin: 22px 0;
 }
 
 ul {
